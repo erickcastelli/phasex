@@ -14,7 +14,7 @@ Second, we use cmake to generate the make file. Thus, be sure that you have cmak
 
 Download this git repository, and follow these instructions:
 - enter folder /build
-- type "cmake .."
+- type "cmake ../source/"
 - if everything worked, type "make"
 - the binary will be placed in the folder /build
 
