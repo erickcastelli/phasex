@@ -33,6 +33,8 @@ American metropolis (São Paulo, Brazil). BioRxiv (doi 10.1101/2020.09.15.298026
 - and many others...
 
 ## How to use phasex:
+PHASEX used shapeit4 to phase bi-allelic variants (considering the PS field) and BEAGLE 4.1 to phase multiallelic variants considering the scafold infered by Shapeit4.
+
 Assuming that you have moved the binary to /usr/local/bin or onother directory in the PATH, follow these instructions:
 > phasex
 
@@ -50,6 +52,36 @@ To use this function, you must type:
 > phasex hp-ps vcf=THE_VCF_FILE output=THE_NEW_VCF_FILE
 
 Do not use spaces before and after "=". The --quiet mode forces the program to not output any comment.
+
+> phasex phase-ps
+
+You will see all the options for this function. This is a typical phasex run:
+
+> phasex phase-ps vcf=VCF_FILE_IN_PS_FORMAT iterations=10 replicates=20 shapeit=SHAPEIT4_BINARY beagle=BEAGLE4_JAR
+
+This configuration informs PHASEX to run 20 parallel haplotyping runs (replicates), fixing concordant haplotypes using the threshold value (95% of the runs), and performing these steps 10 times (iteractions). The output folder will be placed next to the input VCF unless modified with "output=". 
+
+The threshold for fixing a haplotype is 95% (the default), i.e., a haplotype is fixed as true if 19 runs (20 replicates * 0.95) indicate the same hapotype for a sample. you can modify this using "threshold=".
+
+Phasex use half the number of cores of system unless modified by "threads=".
+
+Phasex will perform 10 iterations, i.e., 10 steps of 20 parallel runs and haplotype comparison. You can modify this using "iterations=" and "replicates=".
+
+After the final iteration (in this case, the 10th interation), phasex will output the final haplotypes, considering only samples in which a same haplotype was inferred in at least 70% of the replicates in the final run. You can modify this using "select=".
+
+Option scheme is used by Shapeit4. By default, this scheme is 15b,1p,1b,1p,1b,1p,1b,1p,1b,1p,1b,1p,15m. you can modify this using scheme="10b,1p,1b,1p,1b,1p,1b,1p,10m".
+
+Option shapeit_others is used to indicate other shapeit4 parameters.
+
+Option map is used to indicate a genetic map for Shapeit4 (not mandatory). Please download these maps in the Shapeit4 website.
+
+Flag --quiet forces PHASEX to not output any progress or comment.
+
+Flag --biallelic forces PHASEX to deal only with biallelic variants, using only Shapeit4.
+
+
+
+
 
 
 
