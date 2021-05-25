@@ -80,7 +80,34 @@ Flag --quiet forces PHASEX to not output any progress or comment.
 Flag --biallelic forces PHASEX to deal only with biallelic variants, using only Shapeit4.
 
 
+## The phasex outputs:
 
+The output structure is as follows:
+
+phasex.log: Record all the parameters and some quality-control information
+
+results.vcf: This is the final PHASED VCF file. Only the samples passing the select threshold are included inn this file (by default: 70% of the runs presenting the same haplotype in the final run).
+
+results.freq: The haplotypes, their global count and frequency
+
+sample_list.txt: The list of samples that passed the SELECT theshold.
+
+/shapeit : the shapeit results for each iteration, and the final results in "results.txt"
+
+/shapeit/results.txt: the final results when using shapeit4. This file presents the following format:
+
+Sample	h1	h2	Freq(1)	Info(1)	Freq(2)	Info(2)	Freq(n)	Info(n)	Status
+ - Sample: the sample id
+ - h1: first haplotype
+ - h2: second haplotype
+ - Freq(n): proportion of parallel runs indicating this pair of haplotypes in iteration N
+ - info(n): "-" if under the threshold, "def" if fixed for the next iteration
+ - Status: "-" if not this haplotype pair is under the SELECT threshold, "pass" if it is above the SELECT threhold. Only the samples with "pass" are included in the final VCF.
+																					
+
+/beagle : the beagle results for each iteration, and the final results in "results.txt"
+
+/source : the files used for the haplotyping procedure.
 
 
 
