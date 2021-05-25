@@ -1,7 +1,7 @@
 # phasex
 Written by Erick C. Castelli, erick.castelli@unesp.br
 
-Current version: 0.8.1
+Current version: 0.8.2
 
 Phasex is a software written in C++ to automate and compare multiple haplotyping runs using Shapeit4 and/or Beagle 4.
 
@@ -12,7 +12,7 @@ First, you need Boost to compile phasex. On Ubuntu, we recommend using sudo-apt-
 
 Second, we use cmake to generate the make file. Thus, be sure that you have cmake installed.
 
-Download this git repository, and follow these instructions:
+Download this git repository (using "git clone https://github.com/erickcastelli/phasex"), and follow these instructions:
 - enter folder /build
 - type "cmake ../source/"
 - if everything worked, type "make"
