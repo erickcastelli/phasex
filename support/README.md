@@ -16,4 +16,6 @@ To use this script you need:
 - reference sequence of the chromosome you are phasing (only one sequence in a FASTA file)
 - the script mthreadscmd.pl (also available in this /support folder).
 
-### split_to_rbp_4.0.pl: 
+### mthreadscmd.pl: 
+
+Perl script to parallelize commands to be used with the split_to_rbp_4.0.pl
