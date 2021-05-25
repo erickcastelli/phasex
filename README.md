@@ -3,9 +3,9 @@ Written by Erick C. Castelli, erick.castelli@unesp.br
 
 Current version: 0.8.1
 
-Phasex is piace of software written in C++ to automate and compare multiple haplotyping runs using Shapeit4 and/or Beagle 4.
+Phasex is a software written in C++ to automate and compare multiple haplotyping runs using Shapeit4 and/or Beagle 4.
 
-It has been used mainly for haplotyping of HLA and KIR alleles in different studies, but it can be used for haplotyping of other genes. It is suitable for datasets of thosands of samples but limited number os variants (e.g., 5000 samples, 3000 variants). Phasex will automate parallel runs and compare the results, fixing the haplotypes with concordance rates over a threshold to subsequent runs.
+It has been used mainly for haplotyping of HLA and KIR alleles in different studies. Still, it can be used for haplotyping of other genes. It is suitable for datasets of thousands of samples but a limited number of variants (e.g., 5000 samples, 3000 variants). Phasex will automate parallel runs and compare the results, fixing the haplotypes with concordance rates over a threshold to subsequent runs.
 
 ## How to compile and install phasex:
 First, you need Boost to compile phasex. On Ubuntu, we recommend using sudo-apt-get install libboost-all-dev. On Macos, we recommend use homebrew: brew install boost
@@ -13,7 +13,7 @@ First, you need Boost to compile phasex. On Ubuntu, we recommend using sudo-apt-
 Second, we use cmake to generate the make file. Thus, be sure that you have cmake installed.
 
 
-Download this git repository, and follow these instrocutions:
+Download this git repository, and follow these instructions:
 - enter folder /build
 - type "cmake .."
 - if everything worked, type "make"
@@ -33,9 +33,9 @@ American metropolis (São Paulo, Brazil). BioRxiv (doi 10.1101/2020.09.15.298026
 - and many others...
 
 ## How to use phasex:
-PHASEX used shapeit4 to phase bi-allelic variants (considering the PS field) and BEAGLE 4.1 to phase multiallelic variants considering the scafold infered by Shapeit4.
+PHASEX used shapeit4 to phase bi-allelic variants (considering the PS field) and BEAGLE 4.1 to phase multiallelic variants considering the scaffold inferred by Shapeit4.
 
-Assuming that you have moved the binary to /usr/local/bin or onother directory in the PATH, follow these instructions:
+Assuming that you have moved the binary to /usr/local/bin or another directory in the PATH, follow these instructions:
 > phasex
 
 You will see the main functions
@@ -51,7 +51,7 @@ You will see the options for the hp-ps function. This method converts GATK ReadB
 To use this function, you must type:
 > phasex hp-ps vcf=THE_VCF_FILE output=THE_NEW_VCF_FILE
 
-Do not use spaces before and after "=". The --quiet mode forces the program to not output any comment.
+Do not use spaces before and after "=". The --quiet mode forces the program not to output any comment.
 
 > phasex phase-ps
 
@@ -61,21 +61,21 @@ You will see all the options for this function. This is a typical phasex run:
 
 This configuration informs PHASEX to run 20 parallel haplotyping runs (replicates), fixing concordant haplotypes using the threshold value (95% of the runs), and performing these steps 10 times (iteractions). The output folder will be placed next to the input VCF unless modified with "output=". 
 
-The threshold for fixing a haplotype is 95% (the default), i.e., a haplotype is fixed as true if 19 runs (20 replicates * 0.95) indicate the same hapotype for a sample. you can modify this using "threshold=".
+The threshold for fixing a haplotype is 95% (the default), i.e., a haplotype is fixed as true if 19 runs (20 replicates * 0.95) indicate the same hapotype for a sample. You can modify this using "threshold=".
 
-Phasex use half the number of cores of system unless modified by "threads=".
+Phasex uses half of the number of cores of the system unless modified by "threads=".
 
 Phasex will perform 10 iterations, i.e., 10 steps of 20 parallel runs and haplotype comparison. You can modify this using "iterations=" and "replicates=".
 
-After the final iteration (in this case, the 10th interation), phasex will output the final haplotypes, considering only samples in which a same haplotype was inferred in at least 70% of the replicates in the final run. You can modify this using "select=".
+After the final iteration (in this case, the 10th interation), phasex will output the final haplotypes, considering only samples in which the same haplotype was inferred in at least 70% of the replicates in the final run. You can modify this using "select=".
 
 Option scheme is used by Shapeit4. By default, this scheme is 15b,1p,1b,1p,1b,1p,1b,1p,1b,1p,1b,1p,15m. you can modify this using scheme="10b,1p,1b,1p,1b,1p,1b,1p,10m".
 
 Option shapeit_others is used to indicate other shapeit4 parameters.
 
-Option map is used to indicate a genetic map for Shapeit4 (not mandatory). Please download these maps in the Shapeit4 website.
+Option map is used to indicate a genetic map for Shapeit4 (not mandatory). Please download these maps at the Shapeit4 website.
 
-Flag --quiet forces PHASEX to not output any progress or comment.
+Flag --quiet forces PHASEX not to output any progress or comment.
 
 Flag --biallelic forces PHASEX to deal only with biallelic variants, using only Shapeit4.
 
@@ -86,11 +86,11 @@ The output structure is as follows:
 
 phasex.log: Record all the parameters and some quality-control information
 
-results.vcf: This is the final PHASED VCF file. Only the samples passing the select threshold are included inn this file (by default: 70% of the runs presenting the same haplotype in the final run).
+results.vcf: This is the final PHASED VCF file. Only the samples passing the select threshold are included in this file (by default: 70% of the runs presenting the same haplotype in the final run).
 
-results.freq: The haplotypes, their global count and frequency
+results.freq: The haplotypes, their global count, and frequency
 
-sample_list.txt: The list of samples that passed the SELECT theshold.
+sample_list.txt: The list of samples that passed the SELECT threshold.
 
 /shapeit : the shapeit results for each iteration, and the final results in "results.txt"
 
@@ -104,8 +104,9 @@ Sample	h1	h2	Freq(1)	Info(1)	Freq(2)	Info(2)	Freq(n)	Info(n)	Status
  - info(n): "-" if under the threshold, "def" if fixed for the next iteration
  - Status: "-" if not this haplotype pair is under the SELECT threshold, "pass" if it is above the SELECT threhold. Only the samples with "pass" are included in the final VCF.
 																					
-
 /beagle : the beagle results for each iteration, and the final results in "results.txt"
+
+/beagle/results.txt: the final results when using Beagle. Same format as for Shapeit.
 
 /source : the files used for the haplotyping procedure.
 
