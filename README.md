@@ -12,7 +12,6 @@ First, you need Boost to compile phasex. On Ubuntu, we recommend using sudo-apt-
 
 Second, we use cmake to generate the make file. Thus, be sure that you have cmake installed.
 
-
 Download this git repository, and follow these instructions:
 - enter folder /build
 - type "cmake .."
@@ -21,16 +20,9 @@ Download this git repository, and follow these instructions:
 
 Finally, you need a working copy of Shapeit4 (https://odelaneau.github.io/shapeit4/) and Beagle 4.1 (https://faculty.washington.edu/browning/beagle/b4_1.html)
 
-## Manuscripts using phasex:
-- Castelli et al. Immunogenetics of resistance to SARS-CoV-2 infection in discordant couples. MedRxiv (doi 10.1101/2021.04.21.21255872)
-- Naslavsky et al. Whole-genome sequencing of 1,171 elderly admixed individuals from the largest Latin
-American metropolis (São Paulo, Brazil). BioRxiv (doi 10.1101/2020.09.15.298026)
-- Sonon et al. Peripheral spectrum neurological disorder after arbovirus infection is associated with HLA-F variants among Northeastern Brazilians. Infect Genet Evol. 2021 Apr 8;92:104855. doi: 10.1016/j.meegid.2021.104855
-- Sonon et al. Human leukocyte antigen (HLA)-F and -G gene polymorphisms and haplotypes are associated with malaria susceptibility in the Beninese Toffin children. Infect Genet Evol. 2021 Mar 27;92:104828. doi: 10.1016/j.meegid.2021.104828
-- Weiss et al. KIR2DL4 genetic diversity in a Brazilian population sample: implications for transcription regulation and protein diversity in samples with different ancestry backgrounds. Immunogenetics. 2021 Jun;73(3):227-241. doi: 10.1007/s00251-021-01206-9
-- Souza et al. Hla-C genetic diversity and evolutionary insights in two samples from Brazil and Benin. HLA. 2020 Oct;96(4):468-486. doi: 10.1111/tan.13996
-- Ramos et al. A large familial cluster and sporadic cases of frontal fibrosing alopecia in Brazil reinforce known human leucocyte antigen (HLA) associations and indicate new HLA susceptibility haplotypes. J Eur Acad Dermatol Venereol. 2020 Oct;34(10):2409-2413. doi: 10.1111/jdv.16629
-- and many others...
+
+## How to cite PHASEX:
+Plase cite Souza et al. Hla-C genetic diversity and evolutionary insights in two samples from Brazil and Benin. HLA. 2020 Oct;96(4):468-486. doi: 10.1111/tan.13996
 
 ## How to use phasex:
 PHASEX used shapeit4 to phase bi-allelic variants (considering the PS field) and BEAGLE 4.1 to phase multiallelic variants considering the scaffold inferred by Shapeit4.
@@ -47,6 +39,11 @@ You will see the main functions
 > phasex hp-ps
 
 You will see the options for the hp-ps function. This method converts GATK ReadBackedPhasing phased VCF to the PS format to be compatible with phasex. If you use WhatsHap, this step is not necessary if you used "--tag=PS" when running WhatsHap.
+
+
+```diff
+- Please note that there is a Perl script in /support to parallelize GATK ReadBackedPhasing run and speed up the process.
+```
 
 To use this function, you must type:
 > phasex hp-ps vcf=THE_VCF_FILE output=THE_NEW_VCF_FILE
@@ -112,5 +109,20 @@ Sample	h1	h2	Freq(1)	Info(1)	Freq(2)	Info(2)	Freq(n)	Info(n)	Status
 
 
 
+## Editing/selecting samples for the final VCF file:
+
+Files /shapeit/results.txt contains all the haplotypes detected for each sample (when phasing only bi-allelic variants) and /beagle/results.txt when phasing multi-allelic variants. You can edit this file excluding samples by replacing "pass" under Status by "-", or force the inclusion of a sample by changing "-" for "pass". If you have edited this file, you should run the following command to recreate the final VCF file:
+
+> phasex recreate input=PATH_TO_THE_OUTPUT_PHASEX_FOLDER
 
 
+## Manuscripts using phasex:
+- Castelli et al. Immunogenetics of resistance to SARS-CoV-2 infection in discordant couples. MedRxiv (doi 10.1101/2021.04.21.21255872)
+- Naslavsky et al. Whole-genome sequencing of 1,171 elderly admixed individuals from the largest Latin
+American metropolis (São Paulo, Brazil). BioRxiv (doi 10.1101/2020.09.15.298026)
+- Sonon et al. Peripheral spectrum neurological disorder after arbovirus infection is associated with HLA-F variants among Northeastern Brazilians. Infect Genet Evol. 2021 Apr 8;92:104855. doi: 10.1016/j.meegid.2021.104855
+- Sonon et al. Human leukocyte antigen (HLA)-F and -G gene polymorphisms and haplotypes are associated with malaria susceptibility in the Beninese Toffin children. Infect Genet Evol. 2021 Mar 27;92:104828. doi: 10.1016/j.meegid.2021.104828
+- Weiss et al. KIR2DL4 genetic diversity in a Brazilian population sample: implications for transcription regulation and protein diversity in samples with different ancestry backgrounds. Immunogenetics. 2021 Jun;73(3):227-241. doi: 10.1007/s00251-021-01206-9
+- Souza et al. Hla-C genetic diversity and evolutionary insights in two samples from Brazil and Benin. HLA. 2020 Oct;96(4):468-486. doi: 10.1111/tan.13996
+- Ramos et al. A large familial cluster and sporadic cases of frontal fibrosing alopecia in Brazil reinforce known human leucocyte antigen (HLA) associations and indicate new HLA susceptibility haplotypes. J Eur Acad Dermatol Venereol. 2020 Oct;34(10):2409-2413. doi: 10.1111/jdv.16629
+- and many others...
