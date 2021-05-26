@@ -8,7 +8,7 @@ Phasex is a software written in C++ to automate and compare multiple haplotyping
 It has been used mainly for haplotyping of HLA and KIR alleles in different studies. Still, it can be used for haplotyping of other genes. It is suitable for datasets of thousands of samples but a limited number of variants (e.g., 5000 samples, 3000 variants). Phasex will automate parallel runs and compare the results, fixing the haplotypes with concordance rates over a threshold to subsequent runs.
 
 ## How to compile and install phasex:
-First, you need Boost to compile phasex. On Ubuntu, we recommend using sudo-apt-get install libboost-all-dev. On Macos, we recommend use homebrew: brew install boost
+First, you need Boost to compile phasex. On Ubuntu, we recommend using "sudo apt-get install libboost-all-dev". On Macos, we recommend use homebrew: brew install boost
 
 Second, we use cmake to generate the make file. Thus, be sure that you have cmake installed.
 
