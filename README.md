@@ -64,7 +64,7 @@ Phasex uses half of the number of cores of the system unless modified by "thread
 
 Phasex will perform 10 iterations, i.e., 10 steps of 20 parallel runs and haplotype comparison. You can modify this using "iterations=" and "replicates=".
 
-After the final iteration (in this case, the 10th interation), phasex will output the final haplotypes, considering only samples in which the same haplotype was inferred in at least 70% of the replicates in the final run. You can modify this using "select=".
+After the final iteration (in this case, the 10th iteration), phasex will output the final haplotypes, considering only samples in which the same haplotype was inferred in at least 70% of the replicates in the final run. You can modify this using "select=".
 
 Option scheme is used by Shapeit4. By default, this scheme is 15b,1p,1b,1p,1b,1p,1b,1p,1b,1p,1b,1p,15m. you can modify this using scheme="10b,1p,1b,1p,1b,1p,1b,1p,10m".
 
